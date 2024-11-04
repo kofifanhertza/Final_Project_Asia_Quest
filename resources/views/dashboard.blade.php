@@ -1,6 +1,4 @@
-@extends('layouts.app')
-@section('title', '商品編集')
-@section('content')
+<x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Dashboard') }}
@@ -14,22 +12,6 @@
                     {{ __("You're logged in!") }}
                 </div>
             </div>
-
-            <br>
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ link_to_route('items.index', 'View Items', [], ['class' => 'btn btn-primary']) }}
-                </div>
-            </div>
-            <br>
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ link_to_route('categories.index', 'View Categories', [], ['class' => 'btn btn-primary']) }}
-                </div>
-            </div>
-
-
         </div>
-
     </div>
-@endsection
+</x-app-layout>

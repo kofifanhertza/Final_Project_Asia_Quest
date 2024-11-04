@@ -1,20 +1,8 @@
 <?php
 
-use App\Http\Controllers\Category\createCategoryController;
-use App\Http\Controllers\Category\destroyCategoryController;
-use App\Http\Controllers\Category\editCategoryController;
-use App\Http\Controllers\Category\indexCategoryController;
-use App\Http\Controllers\Category\showCategoryController;
-use App\Http\Controllers\Category\storeCategoryController;
-use App\Http\Controllers\Category\updateCategoryController;
-use App\Http\Controllers\Item\createController;
-use App\Http\Controllers\Item\destroyController;
-use App\Http\Controllers\Item\editController;
-use App\Http\Controllers\Item\indexController;
-use App\Http\Controllers\Item\showController;
-use App\Http\Controllers\Item\storeController;
-use App\Http\Controllers\Item\updateController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -43,27 +31,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Item
-Route::post('/items/store', storeController::class)->name('items.store');
-Route::put('/items/{item}', updateController::class)->name('items.update');
-
-Route::get('/items/create', createController::class)->name('items.create');
-Route::get('/items', indexController::class)->name('items.index');
-Route::get('/items/{item}', showController::class)->name('items.show');
-Route::get('/items/{item}/edit', editController::class)->name('items.edit');
-
-Route::delete('/items/{item}/destroy', destroyController::class)->name('items.destroy');
 
 
-// Category
-Route::post('/categories/store', storeCategoryController::class)->name('categories.store');
-Route::put('/categories/{category}', updateCategoryController::class)->name('categories.update');
+Route::patch('/products/{product}/addStock', [ProductController::class, 'addStock'])->name('products.addStock');
+Route::patch('/products/{product}/removeStock', [ProductController::class, 'removeStock'])->name('products.removeStock');
+Route::patch('/products/{product}/bulkUpdate', [ProductController::class, 'bulkUpdate'])->name('products.bulkUpdate');
 
-Route::get('/categories/create', createCategoryController::class)->name('categories.create');
-Route::get('/categories', indexCategoryController::class)->name('categories.index');
-Route::get('/categories/{category}', showCategoryController::class)->name('categories.show');
-Route::get('/categories/{category}/edit', editCategoryController::class)->name('categories.edit');
+Route::resource('products', ProductController::class);
+Route::resource('categories', CategoryController::class);
 
-Route::delete('/categories/{category}/destroy', destroyCategoryController::class)->name('categories.destroy');
+
 
 require __DIR__.'/auth.php';

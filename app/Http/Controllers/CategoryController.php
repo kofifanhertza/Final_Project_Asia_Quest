@@ -1,35 +1,52 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\StoreCategoryRequest;
+
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         $categories = Category::all();
-        return view('category.index', compact('categories'));
+        $categories = Category::withCount('products')->get();
+
+        return view("categories.index", compact("categories"));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
-        return view('category.create');
+        return view("categories.create");
     }
 
-    public function store(StoreCategoryRequest $request)
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
     {
+
         Category::create([
             'name' => $request->input('name'),
+            'description' => $request->input('description'),
         ]);
 
-        return redirect()->route('category.index');
+        return redirect()->route('categories.index');
     }
 
+    /**
+     * Display the specified resource.
+     */
     public function show(Category $category)
     {
-        return view('category.show', compact('category'));
+
+        return view('categories.show', compact('category'));
     }
 
     /**
@@ -37,19 +54,20 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('category.edit', compact('category'));
+        return view('categories.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreCategoryRequest $request, Category $category)
+    public function update(Request $request, Category $category)
     {
         $category->update([
             'name' => $request->input('name'),
+            'description' => $request->input('description'),
         ]);
 
-        return redirect()->route('category.index');
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -58,6 +76,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('category.index');
+        return redirect()->route('categories.index');
     }
 }

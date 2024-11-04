@@ -8,14 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['name'];
-
-    public function items()
+    protected $fillable = ['name', 'description'];
+    public function products()
     {
-        return $this->hasMany('App\Models\Item');
+        return $this->hasMany('App\Models\Product');
     }
-
     public static function listOfOptions()
     {
         $list = self::all()->pluck('name', 'id');
