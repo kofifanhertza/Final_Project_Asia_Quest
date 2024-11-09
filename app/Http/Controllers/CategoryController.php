@@ -18,9 +18,7 @@ class CategoryController extends Controller
         return view("categories.index", compact("categories"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view("categories.create");
@@ -40,9 +38,6 @@ class CategoryController extends Controller
         return redirect()->route('categories.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Category $category)
     {
 

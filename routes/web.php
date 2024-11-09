@@ -3,7 +3,13 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\StoreController;
+use App\Http\Controllers\StockController;
+use App\Http\Controllers\Api\APIProductController;
+use App\Http\Controllers\Api\APIStockController;
+
 use Illuminate\Support\Facades\Route;
+
 
 
 /*
@@ -31,6 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/products/api', [APIProductController::class,'index']);
+Route::get('/stocks/api', [APIStockController::class,'index']);
 
 
 Route::patch('/products/{product}/addStock', [ProductController::class, 'addStock'])->name('products.addStock');
@@ -39,6 +47,10 @@ Route::patch('/products/{product}/bulkUpdate', [ProductController::class, 'bulkU
 
 Route::resource('products', ProductController::class);
 Route::resource('categories', CategoryController::class);
+Route::resource('stores', StoreController::class);
+Route::resource('stocks', StoreController::class);
+
+
 
 
 

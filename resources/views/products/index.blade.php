@@ -35,7 +35,7 @@
                                 <td class="border px-4 py-2">{{ link_to_route('products.show', $product->id, ['product' => $product->id]) }}</td>
                                 <td class="border px-4 py-2">{{ $product->name }}</td>
                                 <td class="border px-4 py-2">{{ $product->price }}</td>
-                                <td class="border px-4 py-2">{{ $product->stock }}</td>
+                                <td class="border px-4 py-2">{{ $product->stock ? $product->stock->quantity : 'N/A' }}</td>
 
                                 <td class="border px-4 py-2">
                                     {{ Form::open(['route' => ['products.addStock', $product->id], 'method' => 'patch', 'class' => 'inline-block']) }}
@@ -48,16 +48,8 @@
 
                                     <button onclick="openPopup()" class="btn btn-sm btn-secondary">Bulk Update</button>
                                 </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Popup Modal -->
+                                <td><!-- Popup Modal -->
     <div id="popup" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 backdrop-blur-sm flex items-center justify-center">
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full">
             <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">Bulk Update</h2>
@@ -74,7 +66,17 @@
             <button onclick="closePopup()" class="mt-4 w-full text-center text-gray-500 hover:text-gray-700">Close</button>
 
         </div>
+    </div></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
+
+    
 
     <style>
         /* Add a blur effect to the background when the popup is open */

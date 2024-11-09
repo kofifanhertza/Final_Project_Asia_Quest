@@ -56,7 +56,7 @@
                 {{ Form::close() }}
             </td>
 
-            {{ Form::close() }}
+            {{ Form::close()}}
         </div>
     </div>
 @endsection

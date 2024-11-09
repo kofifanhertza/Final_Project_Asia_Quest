@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 
+use App\Http\Controllers\StockController;
+
 class ProductController extends Controller
 {
     /**
@@ -34,8 +36,7 @@ class ProductController extends Controller
     {
         $product->name = $request->input('name');
         $product->description = $request->input('description');
-        $product->price = $request->input('price');
-        $product->stock = 0;
+        $product->price = $request->input('price'); 
         $category = Category::find($request->input('category_id'));
         $category->products()->save($product);
 
