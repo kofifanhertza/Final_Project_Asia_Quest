@@ -1,7 +1,7 @@
 version: '3'
 services:
     laravel.test:
-        container_name: laravel.test-new-employees-backend-2024
+        container_name: laravel.test-product_management_sys_back_end
         build:
             context: ./vendor/laravel/sail/runtimes/8.2
             dockerfile: Dockerfile
@@ -25,7 +25,7 @@ services:
         depends_on:
             - mysql
     mysql:
-        container_name: mysql-new-employees-backend-2024
+        container_name: mysql-product_management_sys_back_end
         image: 'mysql/mysql-server:8.0'
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
