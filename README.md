@@ -23,3 +23,12 @@ docker run --rm \
 ```
 ./vendor/bin/sail artisan migrate
 ```
+
+
+```
+./vendor/bin/sail down -v
+```
+
+```
+./vendor/bin/sail up -d
+```
